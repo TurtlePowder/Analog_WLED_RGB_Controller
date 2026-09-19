@@ -2,7 +2,7 @@
 Analog WLED RGB Controller for 12V Stripes
 
 # ESP32-S3 Analog RGB WLED Controller
-An open-source hardware controller designed for **12V Analog RGB LED Strips** powered by the **ESP32-S3-WROOM-1** module and integrated with [WLED](https://github.com/Aircoookie/WLED).
+An open-source hardware controller designed for **12V Analog RGB LED Strips** powered by the **ESP32-S3-WROOM-1** module and integrated with WLED.
 This board features logic-level driven N-channel MOSFET switching, dual buck regulation for high-efficiency power management, an onboard digital I2S MEMS microphone for Sound-Reactive effects, and USB-C connectivity with ESD protection.
 ---
 ## Features
