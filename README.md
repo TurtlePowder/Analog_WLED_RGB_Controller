@@ -37,27 +37,3 @@ This board features logic-level driven N-channel MOSFET switching, dual buck reg
 * **Pin 2:** Blue Channel (`Q1` Drain)
 * **Pin 3:** Green Channel (`Q2` Drain)
 * **Pin 4:** Red Channel (`Q3` Drain)
----
-## WLED Configuration Guide
-### 1. Initial Setup
-1. Flashing WLED: Use the [WLED Web Installer](https://install.wled.me/) to flash standard or Sound-Reactive ESP32-S3 firmware.
-2. Connect to the initial `WLED-AP` access point and configure your local Wi-Fi credentials.
-### 2. LED Settings
-1. Open the WLED web UI and go to **Config** > **LED Preferences**.
-2. Set **LED total** to `1`.
-3. Under **Hardware setup**, select **Analog RGB** as the LED type.
-4. Assign the GPIO pins as follows:
-   * **Red:** `38`
-   * **Green:** `39`
-   * **Blue:** `40`
-5. Save settings and restart.
-### 3. Sound-Reactive Audio Settings (Optional)
-If using Audio-Reactive firmware:
-1. Go to **Config** > **Usermods** (or **Audio Settings** depending on version).
-2. Set **Digital Microphone Type:** `I2S Generic`
-3. Configure I2S Pins:
-   * **I2S SD:** `14`
-   * **I2S WS:** `12`
-   * **I2S SCK:** `13`
----
-## Hardware Architecture
