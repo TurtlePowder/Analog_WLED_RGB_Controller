@@ -50,4 +50,51 @@ The board uses a two-stage buck-converter power architecture:
 
 - Onboard `MSM261S4030HDR` digital I2S MEMS microphone
 - Direct connection to the ESP32-S3 I2S peripheral
+- Intended for WLED Sound Reactive effects
+- No external analog microphone amplifier required
+
+### USB-C
+
+- USB-C connector
+- USB 2.0 data connection to the ESP32-S3
+- `USBLC6-2SC6` ESD protection
+- USB power/data interface for programming and configuration
+
+---
+
+# Electrical Architecture
+
+The controller is divided into four main sections:
+
+```text
+                 +----------------------+
+                 |      12 V INPUT      |
+                 +----------+-----------+
+                            |
+                     Fuse + Protection
+                            |
+              +-------------+-------------+
+              |                           |
+              |                           |
+          RGB LED Strip              12 V → 5 V
+              |                      Buck Converter
+              |                           |
+              |                          +5 V
+              |                           |
+        +-----+-----+                 5 V → 3.3 V
+        |           |                 Buck Converter
+       Red       Green / Blue             |
+        |           |                    +3.3 V
+     MOSFETs     MOSFETs                  |
+        |           |              +------+------+
+        +-----+-----+              |             |
+              |                 ESP32-S3       I2S Mic
+             GNDconverter for **5 V → 3.3 V**
+- Separate regulated rails for the ESP32-S3 and microphone
+- High-efficiency switching regulation
+
+### Audio Reactive
+
+- Onboard `MSM261S4030HDR` digital I2S MEMS microphone
+- Direct connection to the ESP32-S3 I2S peripheral
 - Intended
