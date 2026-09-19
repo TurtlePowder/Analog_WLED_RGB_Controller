@@ -1,39 +1,53 @@
 # Analog_WLED_RGB_Controller
-Analog WLED RGB Controller for 12V Stripes
 
 # ESP32-S3 Analog RGB WLED Controller
-An open-source hardware controller designed for **12V Analog RGB LED Strips** powered by the **ESP32-S3-WROOM-1** module and integrated with WLED.
-This board features logic-level driven N-channel MOSFET switching, dual buck regulation for high-efficiency power management, an onboard digital I2S MEMS microphone for Sound-Reactive effects, and USB-C connectivity with ESD protection.
+
+An open-source hardware controller for **12 V analog RGB LED strips**, built around the **ESP32-S3-WROOM-1** and designed for WLED.
+
+The controller uses three low-side N-channel MOSFET switches to independently control the Red, Green, and Blue channels of a 12 V analog RGB strip using PWM. It also includes onboard power regulation, USB-C connectivity, ESD protection, and an I2S digital MEMS microphone for sound-reactive WLED effects.
+
+The hardware is designed around a **3 A RGB strip load target** and a 12 V input supply.
+
 ---
+
 ## Features
-* **MCU Core:** ESP32-S3-WROOM-1 (USB native support, Wi-Fi, BLE).
-* **LED Control:** 3x Low-side MOSFET channels (`IRLZ44N`) driven directly via ESP32 PWM pins.
-* **Power Management:**
-  * **12V Input:** Reverse polarity diode protection (`SMBJ43A`) & replaceable fuse (`F1`).
-  * **12V → 5V Buck Converter:** LMR51430YDDCR step-down regulator.
-  * **5V → 3.3V Regulator:** Secondary LMR51430YDDCR step-down regulator for stable MCU & microphone power.
-* **Audio Reactive Capabilities:** Onboard `MSM261S4030HDR` I2S Digital MEMS Microphone for real-time sound synchronization.
-* **Connectivity:** USB-C connector (USB 2.0 interface) with USBLC6-2SC6 ESD protection for data/power.
----
-## Hardware Specifications & Pinout
-### ESP32-S3 GPIO Mapping
 
-| Function | Pin Name | ESP32-S3 GPIO | Description |
-| :--- | :--- | :--- | :--- |
-| **Red Channel** | `Red` | **IO38** | Low-side PWM output for Red channel |
-| **Green Channel** | `Green` | **IO39** | Low-side PWM output for Green channel |
-| **Blue Channel** | `Blue` | **IO40** | Low-side PWM output for Blue channel |
-| **I2S Mic WS** | `WS` | **IO12** | Word Select (LRCLK) |
-| **I2S Mic SCK** | `SCK` | **IO13** | Continuous Serial Clock (BCLK) |
-| **I2S Mic SD** | `SD` | **IO14** | Serial Data Out |
+### MCU
 
----
-## Connector Details
-### 1. Power Input (`J3`)
-* **Pin 1:** +12V DC Input
-* **Pin 2:** GND
-### 2. RGB Strip Output (`J4`)
-* **Pin 1:** +12V VCC (Shared Positive Terminal)
-* **Pin 2:** Blue Channel (`Q1` Drain)
-* **Pin 3:** Green Channel (`Q2` Drain)
-* **Pin 4:** Red Channel (`Q3` Drain)
+- **ESP32-S3-WROOM-1**
+- Wi-Fi and Bluetooth LE
+- Native USB support
+- Hardware PWM for RGB control
+- 3.3 V logic
+
+### RGB LED Control
+
+- 3 independent low-side MOSFET channels
+- **IRLZ44N** N-channel logic-level MOSFETs
+- PWM-controlled Red, Green, and Blue channels
+- Designed for **12 V common-anode analog RGB LED strips**
+- Target RGB strip load: **up to 3 A**
+- Separate MOSFET switching for each RGB channel
+
+The RGB strip's positive terminal is connected directly to the +12 V supply.  
+The three color channels are switched on the low side by the MOSFETs.
+
+### Power Management
+
+The board uses a two-stage buck-converter power architecture:
+
+**12 V → 5 V → 3.3 V**
+
+- 12 V DC input
+- Replaceable input fuse
+- Reverse/transient protection using `SMBJ43A`
+- `LMR51430YDDCR` synchronous buck converter for **12 V → 5 V**
+- Second `LMR51430YDDCR` buck converter for **5 V → 3.3 V**
+- Separate regulated rails for the ESP32-S3 and microphone
+- High-efficiency switching regulation
+
+### Audio Reactive
+
+- Onboard `MSM261S4030HDR` digital I2S MEMS microphone
+- Direct connection to the ESP32-S3 I2S peripheral
+- Intended
